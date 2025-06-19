@@ -40,7 +40,7 @@ export default function Team() {
       name: "Anshi Jain",
       role: "Secretary",
       description: "Leads the society with a vision for creative excellence.",
-      image: "/placeholder.svg?height=300&width=250",
+      image: "/images/secretary.jpg",
       linkedin: "https://www.linkedin.com/in/anshi-jain-5853361a8/",
     },
     {
@@ -76,7 +76,7 @@ export default function Team() {
       name: "Khadija Hussain",
       role: "Outreach Team",
       description: "Handles external communications and partnerships.",
-      image: "/images/WhatsApp Image 2025-06-19 at 17.49.36_61344fd0.jpg",
+      image: "/images/khadija.jpg",
       linkedin: "",
     },
     {

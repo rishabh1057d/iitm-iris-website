@@ -4,7 +4,7 @@ import { useState, useRef } from "react"
 import Image from "next/image"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { ChevronLeft, ChevronRight, Instagram, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 
 // Weekly photo type
@@ -20,7 +20,7 @@ type WeeklyPhoto = {
 }
 
 export default function POTW() {
-  const [selectedMonth, setSelectedMonth] = useState("January")
+  const [selectedMonth, setSelectedMonth] = useState("February")
   const [selectedPhoto, setSelectedPhoto] = useState<WeeklyPhoto | null>(null)
   const [showModal, setShowModal] = useState(false)
   // Removed click tracking functionality - will be re-added with database later
@@ -35,96 +35,39 @@ export default function POTW() {
 
   // Sample data for weekly photos
   const weeklyPhotos: Record<string, WeeklyPhoto[]> = {
-    January: [
-      {
-        id: 1,
-        week: 1,
-        month: "January",
-        theme: "Nature's Patterns",
-        photographer: "Priya Sharma",
-        email: "24f1002346@ds.study.iitm.ac.in",
-        description:
-          "This beautiful butterfly was captured during early morning at the campus garden. The intricate patterns on its wings showcase nature's artistic precision and beauty. The composition highlights the delicate balance of colors and shapes found in our natural world.",
-        image: "/images/week1.jpeg",
-      },
-      {
-        id: 2,
-        week: 2,
-        month: "January",
-        theme: "Birds of Prey",
-        photographer: "Rahul Verma",
-        email: "24f1003421@ds.study.iitm.ac.in",
-        description:
-          "This hawk was photographed in its natural habitat, perched on a branch scanning for prey. The golden hour lighting accentuates its keen eyes and powerful presence, showcasing the majesty of these incredible birds.",
-        image: "/images/week2.jpeg",
-      },
-      {
-        id: 3,
-        week: 3,
-        month: "January",
-        theme: "Wild Encounters",
-        photographer: "Ananya Patel",
-        email: "24f1001234@ds.study.iitm.ac.in",
-        description:
-          "This leopard was captured during a wildlife photography expedition. The intense gaze and perfect camouflage demonstrate the power and stealth of this magnificent predator in its natural environment.",
-        image: "/images/week3.jpeg",
-      },
-      {
-        id: 4,
-        week: 4,
-        month: "January",
-        theme: "Tools of the Trade",
-        photographer: "Vikram Singh",
-        email: "24f1004567@ds.study.iitm.ac.in",
-        description:
-          "This Canon telephoto lens represents the essential equipment of a wildlife photographer. The composition highlights the precision engineering that allows us to capture distant subjects with remarkable clarity.",
-        image: "/images/week4.jpeg",
-      },
-    ],
     February: [
       {
         id: 5,
         week: 1,
         month: "February",
-        theme: "Urban Landscapes",
-        photographer: "Neha Gupta",
+        theme: "Wildlife - Animal Kingdom",
+        photographer: "Arnab Sarkar",
         email: "24f1005678@ds.study.iitm.ac.in",
         description:
-          "This cityscape captures the contrast between modern architecture and natural elements, showcasing how urban environments can create their own unique beauty.",
-        image: "/placeholder.svg?height=600&width=400",
+          "In the heart of the wild, this stunning shot of a leopard emerging from the shadows captures both grace and raw power. The intense gaze, the perfect camouflage, and the quiet dominance of this majestic beast remind us why the animal kingdom never ceases to awe. A moment frozen in time — fierce, fearless, and breathtaking. Let nature write its own story through your lens.",
+        image: "/images/week3.jpeg",  
       },
       {
         id: 6,
         week: 2,
         month: "February",
-        theme: "Reflections",
-        photographer: "Arjun Mehta",
+        theme: "The Golden Hour",
+        photographer: "Arnab Sarkar",
         email: "24f1006789@ds.study.iitm.ac.in",
         description:
-          "This image explores the interplay of light and water, creating mesmerizing patterns that challenge our perception of reality and illusion.",
-        image: "/placeholder.svg?height=600&width=400",
+          "Bathed in golden tranquility, this serene riverside scene captures the essence of the golden hour. The calm waters reflect the setting sun like a mirror, while the lone boat and silhouettes of trees add a poetic stillness to the moment. A perfect blend of light, shadow, and emotion — this image is where nature whispers peace and the sky tells its final story of the day.",
+        image: "/images/golden_hour.png",
       },
       {
         id: 7,
         week: 3,
         month: "February",
-        theme: "Macro World",
-        photographer: "Divya Sharma",
+        theme: "Macro Magic",
+        photographer: "Ashwin A",
         email: "24f1007890@ds.study.iitm.ac.in",
         description:
-          "This extreme close-up reveals the intricate details of a small insect, opening our eyes to the complexity and beauty of the microscopic world around us.",
-        image: "/placeholder.svg?height=600&width=400",
-      },
-      {
-        id: 8,
-        week: 4,
-        month: "February",
-        theme: "Silhouettes",
-        photographer: "Karan Malhotra",
-        email: "24f1008901@ds.study.iitm.ac.in",
-        description:
-          "This dramatic silhouette uses negative space and strong contrast to create a powerful visual statement about form and composition.",
-        image: "/placeholder.svg?height=600&width=400",
+          "Tiny yet powerful — this macro shot captures a rare moment between two ants in stunning detail. The vibrant green backdrop and sharp focus reveal the hidden beauty of nature's smallest wonders.",
+        image: "/images/macro_magiv.png",
       },
     ],
     March: [
@@ -132,51 +75,96 @@ export default function POTW() {
         id: 9,
         week: 1,
         month: "March",
-        theme: "Street Photography",
-        photographer: "Meera Reddy",
+        theme: "Daily Hustle",
+        photographer: "Anirban Das",
         email: "24f1009012@ds.study.iitm.ac.in",
         description:
-          "This candid street scene captures a fleeting moment of human interaction, telling a story through gesture and expression.",
-        image: "/placeholder.svg?height=600&width=400",
+          "Amidst the crowd and chaos, this striking frame freezes a powerful moment of stillness. The vibrant orange-robed figure stands out, telling a silent story in the middle of the city's rush — a perfect slice of everyday life captured in motion. ",
+        image: "/images/daily_hustle.png",
       },
       {
         id: 10,
         week: 2,
         month: "March",
-        theme: "Abstract Patterns",
-        photographer: "Rohan Joshi",
+        theme: " Architectural Wonders",
+        photographer: "Fatima Fidha",
         email: "24f1000123@ds.study.iitm.ac.in",
         description:
-          "This abstract composition finds beauty in everyday objects, transforming the mundane into something extraordinary through careful framing and perspective.",
-        image: "/placeholder.svg?height=600&width=400",
+          "A masterpiece of symmetry and light, this shot captures the elegance of design reflected in still water. The rhythmic arches and glowing domes tell a story of craftsmanship that transcends time — where architecture becomes poetry in stone.",
+        image: "/images/architectural_wonders.png",
       },
       {
         id: 11,
         week: 3,
         month: "March",
-        theme: "Golden Hour",
-        photographer: "Aisha Khan",
+        theme: "Wheels In Motion",
+        photographer: "Arghyadeep Biswas",
         email: "24f1001234@ds.study.iitm.ac.in",
         description:
-          "This landscape harnesses the magical quality of light during the golden hour, creating a warm, ethereal atmosphere that transforms the scene.",
-        image: "/placeholder.svg?height=600&width=400",
+          "A vibrant glimpse into the pulse of the city — this shot captures the thrill of motion from the heart of an auto ride. The blur of neon-lit streets and the rainy windshield bring speed, story, and street life together in one dynamic frame. ",
+        image: "/images/wheels_in_motion.png",
       },
       {
         id: 12,
         week: 4,
         month: "March",
-        theme: "Minimalism",
-        photographer: "Sanjay Patel",
+        theme: "Capture the Flavor",
+        photographer: "Isha Gupta",
         email: "24f1002345@ds.study.iitm.ac.in",
         description:
-          "This minimalist composition demonstrates how simplicity and negative space can create a powerful visual impact, focusing attention on essential elements.",
-        image: "/placeholder.svg?height=600&width=400",
+          "This sizzling shot of cheesy, spicy pizza is a flavor explosion captured in a frame. The golden crust, melty layers, and fiery toppings make it absolutely irresistible — a true celebration of comfort food done right!",
+        image: "/images/capture_flavour.png",
+      },
+    ],
+    April: [
+      {
+        id: 9,
+        week: 1,
+        month: "Arpil",
+        theme: "Daily Hustle",
+        photographer: "Anirban Das",
+        email: "24f1009012@ds.study.iitm.ac.in",
+        description:
+          "Amidst the crowd and chaos, this striking frame freezes a powerful moment of stillness. The vibrant orange-robed figure stands out, telling a silent story in the middle of the city's rush — a perfect slice of everyday life captured in motion. ",
+        image: "/images/daily_hustle.png",
+      },
+      {
+        id: 10,
+        week: 2,
+        month: "April",
+        theme: " Architectural Wonders",
+        photographer: "Fatima Fidha",
+        email: "24f1000123@ds.study.iitm.ac.in",
+        description:
+          "A masterpiece of symmetry and light, this shot captures the elegance of design reflected in still water. The rhythmic arches and glowing domes tell a story of craftsmanship that transcends time — where architecture becomes poetry in stone.",
+        image: "/images/architectural_wonders.png",
+      },
+      {
+        id: 11,
+        week: 3,
+        month: "April",
+        theme: "Wheels In Motion",
+        photographer: "Arghyadeep Biswas",
+        email: "24f1001234@ds.study.iitm.ac.in",
+        description:
+          "A vibrant glimpse into the pulse of the city — this shot captures the thrill of motion from the heart of an auto ride. The blur of neon-lit streets and the rainy windshield bring speed, story, and street life together in one dynamic frame. ",
+        image: "/images/wheels_in_motion.png",
+      },
+      {
+        id: 12,
+        week: 4,
+        month: "April",
+        theme: "Capture the Flavor",
+        photographer: "Isha Gupta",
+        email: "24f1002345@ds.study.iitm.ac.in",
+        description:
+          "This sizzling shot of cheesy, spicy pizza is a flavor explosion captured in a frame. The golden crust, melty layers, and fiery toppings make it absolutely irresistible — a true celebration of comfort food done right!",
+        image: "/images/capture_flavour.png",
       },
     ],
   }
 
   const months = [
-    "January",
     "February",
     "March",
     "April",
@@ -243,7 +231,7 @@ export default function POTW() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center relative">
+    <main className="flex min-h-screen flex-col items-center relative" onContextMenu={e => e.preventDefault()}>
       <Navbar />
       <div className="pt-24 pb-12 px-6 w-full max-w-6xl mx-auto">
         <motion.h1
@@ -327,12 +315,13 @@ export default function POTW() {
                     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                     onClick={() => handlePhotoClick(photo)}
                   >
-                    <div className="relative h-[400px] md:h-[300px]">
+                    <div className="relative h-[400px] md:h-[300px] w-full">
                       <Image
                         src={photo.image || "/placeholder.svg"}
                         alt={`Week ${photo.week} - ${photo.theme}`}
                         fill
-                        className="object-cover"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        style={{ objectFit: 'cover' }}
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                         <h3 className="text-xl font-bold text-white">Week {photo.week}</h3>
@@ -388,18 +377,20 @@ export default function POTW() {
               <div className="flex flex-col md:flex-row overflow-hidden">
                 {/* Image container with natural aspect ratio */}
                 <div className="md:w-3/5 flex items-center justify-center p-2">
-                  <div className="relative w-full h-auto">
+                  <div className="flex items-center justify-center w-full h-[70vh]">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5 }}
+                      className="flex items-center justify-center w-full h-full"
                     >
                       <Image
                         src={selectedPhoto.image || "/placeholder.svg"}
                         alt={selectedPhoto.theme}
                         width={800}
                         height={600}
-                        className="w-full h-auto object-contain max-h-[70vh]"
+                        className="object-contain max-h-full max-w-full mx-auto"
+                        style={{ display: 'block' }}
                       />
                     </motion.div>
                   </div>
@@ -414,7 +405,6 @@ export default function POTW() {
                     className="mb-4"
                   >
                     <h3 className="text-xl font-bold">{selectedPhoto.photographer}</h3>
-                    <p className="text-gray-400 text-sm">{selectedPhoto.email}</p>
                   </motion.div>
 
                   <motion.h4
@@ -434,16 +424,6 @@ export default function POTW() {
                   >
                     {selectedPhoto.description}
                   </motion.p>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Instagram className="w-5 h-5 text-gray-400" />
-                    <span className="text-gray-400 text-sm">Follow on Instagram</span>
-                  </motion.div>
                 </div>
               </div>
             </motion.div>
