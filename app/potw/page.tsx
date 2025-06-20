@@ -20,7 +20,28 @@ type WeeklyPhoto = {
 }
 
 export default function POTW() {
-  const [selectedMonth, setSelectedMonth] = useState("February")
+  const months = [
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
+
+  const getCurrentMonth = () => {
+    const now = new Date()
+    const currentMonthName = now.toLocaleString("default", { month: "long" })
+    // If the current month is not in the list, default to the first month
+    return months.includes(currentMonthName) ? currentMonthName : months[0]
+  }
+
+  const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth())
   const [selectedPhoto, setSelectedPhoto] = useState<WeeklyPhoto | null>(null)
   const [showModal, setShowModal] = useState(false)
   // Removed click tracking functionality - will be re-added with database later
@@ -118,65 +139,144 @@ export default function POTW() {
     ],
     April: [
       {
-        id: 9,
+        id: 13,
         week: 1,
         month: "Arpil",
-        theme: "Daily Hustle",
-        photographer: "Anirban Das",
+        theme: "Cosmic Wonders",
+        photographer: "YASHAS K RAO",
         email: "24f1009012@ds.study.iitm.ac.in",
         description:
-          "Amidst the crowd and chaos, this striking frame freezes a powerful moment of stillness. The vibrant orange-robed figure stands out, telling a silent story in the middle of the city's rush — a perfect slice of everyday life captured in motion. ",
-        image: "/images/daily_hustle.png",
+          "Amidst the vast darkness of space, the Orion Nebula glows with ethereal light — a stellar nursery where new stars are born. Surrounded by a sea of distant stars, it stands as one of the universe's most captivating cosmic wonders, reminding us of the beauty and mystery that lies beyond Earth. ",
+        image: "/images/cosmic_wonders.png",
       },
       {
-        id: 10,
+        id: 14,
         week: 2,
         month: "April",
-        theme: " Architectural Wonders",
-        photographer: "Fatima Fidha",
+        theme: "Artified",
+        photographer: "Sahil Bind",
         email: "24f1000123@ds.study.iitm.ac.in",
         description:
-          "A masterpiece of symmetry and light, this shot captures the elegance of design reflected in still water. The rhythmic arches and glowing domes tell a story of craftsmanship that transcends time — where architecture becomes poetry in stone.",
-        image: "/images/architectural_wonders.png",
+          "Bathed in golden twilight, this dreamy scene evokes the gentle magic of a Ghibli world — where glowing fireflies dance beneath an ancient tree and the setting sun whispers stories to the stars. It's nature seen through an artist's soul — soft, serene, and wonderfully artified.",
+        image: "/images/artified.png",
       },
       {
-        id: 11,
+        id: 15,
         week: 3,
         month: "April",
-        theme: "Wheels In Motion",
-        photographer: "Arghyadeep Biswas",
+        theme: "Echoes Of Yesterday",
+        photographer: "Vashu Pandey",
         email: "24f1001234@ds.study.iitm.ac.in",
         description:
-          "A vibrant glimpse into the pulse of the city — this shot captures the thrill of motion from the heart of an auto ride. The blur of neon-lit streets and the rainy windshield bring speed, story, and street life together in one dynamic frame. ",
-        image: "/images/wheels_in_motion.png",
+          "Beneath the comforting shade of this old mango tree, time seems to slow. The worn plastic chairs, faded by sun and stories, whisper of childhood summers, lazy afternoons, and laughter that once echoed through the leaves. A simple scene, yet it holds a universe of memories — a quiet ode to the Echoes of Yesterday.",
+        image: "/images/echoes_of_yesterday.png",
       },
       {
-        id: 12,
+        id: 16,
         week: 4,
         month: "April",
-        theme: "Capture the Flavor",
-        photographer: "Isha Gupta",
+        theme: "Paint With Light",
+        photographer: "NAMAN DEEP SINGH",
         email: "24f1002345@ds.study.iitm.ac.in",
         description:
-          "This sizzling shot of cheesy, spicy pizza is a flavor explosion captured in a frame. The golden crust, melty layers, and fiery toppings make it absolutely irresistible — a true celebration of comfort food done right!",
-        image: "/images/capture_flavour.png",
+          "Light dances through darkness to form 2025 — a glowing symbol of the future captured through motion and time. This long-exposure image transforms fleeting strokes into a bold visual, blending creativity with precision. A perfect ode to the theme Paint with Light, where every streak becomes a brushstroke on the canvas of night.",
+        image: "/images/paint_with_light.png",
       },
     ],
-  }
+    May: [
+      {
+        id: 17,
+        week: 1,
+        month: "May",
+        theme: "Workspace Whispers",
+        photographer: "Sahil Singh",
+        email: "24f1009012@ds.study.iitm.ac.in",
+        description:
+          "A quiet desk lit by a single lamp, scattered with notes, a glowing screen, and the gentle hum of focus — this is where ideas take shape. In the stillness of night, this setup speaks volumes. Workspace Whispers isn't just about tools, it's about the unspoken rhythm of dedication, the soft echoes of late-night learning, and the space where thoughts turn into action.",
+        image: "/images/setup.png",
+      },
+      {
+        id: 18,
+        week: 2,
+        month: "May",
+        theme: "Whishpers Within",
+        photographer: "Suvee sarkar",
+        email: "24f1000123@ds.study.iitm.ac.in",
+        description:
+          "With the mountains stretched endlessly ahead and a cup in hand, silence speaks louder than words. In this stillness, the soul listens – to the wind, the vastness, the peace. Whispers Within is about these quiet moments of reflection, where the world fades and all that remains is you, your thoughts, and the gentle hum of the universe.",
+        image: "/images/Whispers_within.png",
+      },
+      {
+        id: 19,
+        week: 3,
+        month: "May",
+        theme: "Shades of Silence",
+        photographer: "Rishabh Singh",
+        email: "24f1001234@ds.study.iitm.ac.in",
+        description:
+          "A lone wooden bridge stretches endlessly toward silent mountains, captured in haunting monochrome. Each step forward echoes the weight of stillness, the strength of solitude. Shades of Silence isn't just the absence of sound — it's the quiet tension between the known and the unknown, the seen and the felt, the journey and the self.",
+        image: "/images/silence_of_shadows.png",
+      },  
+      {
+        id: 20,
+        week: 4,
+        month: "May",
+        theme: "Break due to Paradox 2025",
+        photographer: "No Winner",
+        email: "24f1001234@ds.study.iitm.ac.in",
+        description:
+          "No POTW this week because everyone is at campus busy in enjoying Paradox 2025",
+        image: "/images/PAradox_break.jpg",
+      },
+    ],
+    June: [
+      {
+        id: 21,
+        week: 1,
+        month: "June",
+        theme: "Break due to Paradox",
+        photographer: "No Winner",
+        email: "24f1009012@ds.study.iitm.ac.in",
+        description:
+          "No POTW this week because everyone is at campus busy in enjoying Paradox 2025",
+        image: "/images/PAradox_break.jpg",
+      },
+      {
+        id: 22,
+        week: 2,
+        month: "June",
+        theme: "Paradox & Memories",
+        photographer: "Anshi Jain",
+        email: "24f1009012@ds.study.iitm.ac.in",
+        description:
+          "In the midst of travel, fest chaos, and ever-moving days, it's moments like these — gathered hands, a deck of UNO, and bursts of laughter — that become the heart of every journey. Captured in the glow of shared stories and silent rivalries, this frame speaks of Paradox 2025 not through grand adventures, but through the joy of pause, play, and pure jubilation.",
+        image: "/images/paradox_memories.png",
+      },
+      {
+        id: 23,
+        week: 3,
+        month: "May",
+        theme: "TBA",
+        photographer: "TBA",
+        email: "24f1000123@ds.study.iitm.ac.in",
+        description:
+          "TBA",
+        image: "/placeholder.svg",
+      },
+      {
+        id: 24,
+        week: 4,
+        month: "May",
+        theme: "TBA",
+        photographer: "TBA",
+        email: "24f1001234@ds.study.iitm.ac.in",
+        description:
+          "TBA",
+        image: "/placeholder.svg",
+      },  
+    ],
 
-  const months = [
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ]
+  }
 
   const handlePhotoClick = async (photo: WeeklyPhoto) => {
     setSelectedPhoto(photo)
