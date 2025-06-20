@@ -35,6 +35,43 @@ export default function Gallery() {
     return () => window.removeEventListener("resize", updateScreenSize)
   }, [])
 
+  // Updated gallery items with real photos
+  const galleryItems = [
+    { id: 1, alt: "LumenAstrum_naman", src: "/images/lumen_astrum_NamanDeepSingh.jpg", photographer: "Naman Deep Singh" },
+    { id: 2, alt: "LumenAstrum_winner", src: "/images/Lumen_astrum_RAKSHITHASRI SHRINIVASAN.jpg", photographer: "RAKSHITHASRI SHRINIVASAN" },
+    { id: 3, alt: "LumenAstrum_yashas", src: "/images/Lumen_astrum_yashas_rao.png", photographer: "Yashas Rao" },
+    { id: 4, alt: "ShutterSafari_piyush", src: "/images/shutter_safari_piyush.jpg", photographer: "Piyush Tiwari" },
+    { id: 5, alt: "ShutterSafari_Devi", src: "/images/shutter_safari_second.jpg", photographer: "Devi Vrinda" },
+    { id: 6, alt: "ShutterSafari_susheel", src: "/images/shutter_safari_third.jpg", photographer: "Susheel Soni" },
+    { id: 7, alt: "ShutterSafari_Winner", src: "/images/shutter_safari_winner.jpg", photographer: "Shreyaskar Srivastava" },
+    { id: 8, alt: "ShutterSafari_Sriram", src: "/images/Shutter_safari_sriram.jpeg", photographer: "Sriram" },
+    { id: 9, alt: "ShutterSafari_round1_kaustubh", src: "/images/kaustubh_round1_ss.png", photographer: "Kaustubh" },
+    { id: 10, alt: "FrameQuest_1", src: "/images/week3.jpeg", photographer: "Arnab Sarkar" },
+    { id: 11, alt: "FrameQuest_5", src: "/images/week1.jpeg", photographer: "Piyush Dipak Wani" },
+    { id: 12, alt: "FrameQuest_3", src: "/images/week2.jpeg", photographer: "Kaustubh" },
+    { id: 14, alt: "FrameQuest_2", src: "/images/framequest_2.png", photographer: "Ashutosh Diwan" },
+    { id: 15, alt: "FrameQuest_4", src: "/images/framequest_4.png", photographer: "Siddhanta Roy" },
+    { id: 17, alt: "Shutter_safari_ve_3", src: "/images/shutter_safari_ve_deepesh.png", photographer: "Deepesh Kumar Dawar" },
+    { id: 18, alt: "Shutter_safari_ve_2", src: "/images/shutter_safari_ve_shreya.png", photographer: "Shreya Saxena" },
+    { id: 19, alt: "Shutter_Safari_ve_1", src: "/images/shutter_safari_ve_susheel.png", photographer: "Susheel Soni" },
+    { id: 20, alt: "ff_holi_1", src: "/images/ff_holi_1.png", photographer: "Diptesh Ghosh" },
+    { id: 21, alt: "ff_holi_2", src: "/images/ff_holi_2.png", photographer: "Susheel Soni" },
+    { id: 22, alt: "ff_holi_3", src: "/images/ff_holi_3.png", photographer: "Shreemad R. Gandhi" },
+    { id: 23, alt: "ff_holi_4", src: "/images/ff_holi_4.png", photographer: "Suprovo Mallick" },
+    { id: 24, alt: "ff_holi_5", src: "/images/ff_holi_5.png", photographer: "Farah Shaikh" },
+    { id: 25, alt: "ss_round1_poorani", src: "/images/ss_round1_1_ POORANI KANDASAMY.jpg", photographer: "POORANI KANDASAMY" },
+    { id: 26, alt: "ss_round1_2", src: "/images/ss_round1_2_Shreyaskar Srrivastava.png", photographer: "Shreyaskar Srivastava" },
+    { id: 27, alt: "ss_rouund1_3", src: "/images/ss_round1_3_Ritushree Mondal (1).jpg", photographer: "Ritushree Mondal" },
+    { id: 28, alt: "ss_rouund1_4", src: "/images/ss_round1_4_saurojeet bhattacharya.jpg", photographer: "Saurojeet Bhattacharaya" },
+  ]
+
+  // Fix: Ensure imagesLoaded is set if all images are loaded, even if no user interaction
+  useEffect(() => {
+    if (!imagesLoaded && Object.keys(loadedImages).length === galleryItems.length) {
+      setImagesLoaded(true)
+    }
+  }, [loadedImages, imagesLoaded, galleryItems.length])
+
   const handleImageLoad = (id: number, e: any) => {
     const { naturalWidth, naturalHeight } = e.target
     const aspectRatio = naturalWidth / naturalHeight
@@ -57,21 +94,6 @@ export default function Gallery() {
       return updated
     })
   }
-
-  // Updated gallery items with real photos
-  const galleryItems = [
-    { id: 1, alt: "Anshi Portrait", src: "/images/anshi.e2e1cc8fa6f466cf14f9.png", photographer: "Anshi Jain" },
-    { id: 2, alt: "Architectural Wonders", src: "/images/architectural_wonders.png", photographer: "Fatima Fidha" },
-    { id: 3, alt: "Golden Hour", src: "/images/golden_hour.png", photographer: "Arnab Sarkar" },
-    { id: 4, alt: "Macro Magic", src: "/images/macro_magiv.png", photographer: "Ashwin A" },
-    { id: 5, alt: "Daily Hustle", src: "/images/daily_hustle.png", photographer: "Anirban Das" },
-    { id: 6, alt: "Paint With Light", src: "/images/paint_with_light.png", photographer: "Naman Deep Singh" },
-    { id: 7, alt: "Silence of Shadows", src: "/images/silence_of_shadows.png", photographer: "Rishabh Singh" },
-    { id: 8, alt: "Raahat Poster", src: "/images/raahat_poster.png", photographer: "IRIS Society" },
-    { id: 9, alt: "She Frames", src: "/images/she_frames.png", photographer: "IRIS Society" },
-    { id: 10, alt: "Swapnil Acharya", src: "/images/swapnil-acharya.jpg", photographer: "Swapnil Acharya" },
-    { id: 11, alt: "Week 1", src: "/images/week1.jpeg", photographer: "IRIS Society" },
-  ]
 
   // Get responsive grid configuration
   const getGridConfig = () => {
@@ -230,7 +252,7 @@ export default function Gallery() {
             columns-2 sm:columns-3 lg:columns-4 xl:columns-5
             gap-3 sm:gap-4 lg:gap-6
             transition-opacity duration-500
-            ${imagesLoaded ? "opacity-100" : "opacity-70"}
+            opacity-100
           `}
           variants={containerVariants}
           initial="hidden"
@@ -239,7 +261,6 @@ export default function Gallery() {
           {sortedItems.map((item, index) => {
             const imageData = loadedImages[item.id]
             const originalIndex = galleryItems.findIndex((gi) => gi.id === item.id)
-
             return (
               <motion.div
                 key={item.id}
@@ -262,8 +283,8 @@ export default function Gallery() {
                     src={item.src || "/placeholder.svg"}
                     alt={item.alt}
                     fill
-                    style={{ objectFit: "cover" }}
-                    className="absolute inset-0 transition-all duration-300 group-hover:scale-105"
+                    style={{ objectFit: "cover", filter: imageData ? undefined : 'blur(8px)', transition: 'filter 0.3s' }}
+                    className={`absolute inset-0 transition-all duration-300 group-hover:scale-105 ${imageData ? '' : 'bg-gray-300 animate-pulse'}`}
                     onLoad={(e) => handleImageLoad(item.id, e)}
                     sizes={`
                       (max-width: 640px) 50vw,
@@ -271,19 +292,17 @@ export default function Gallery() {
                       (max-width: 1280px) 25vw,
                       20vw
                     `}
-                    priority={index < 8} // Prioritize first 8 images
+                    priority={index < 8}
                     quality={90}
                   />
-
                   {/* Photographer overlay with improved positioning */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end bg-gradient-to-t from-black/30 via-black/10 to-transparent">
                     <div className="w-full p-3 sm:p-4">
-                      <span className="inline-block bg-black/80 rounded px-3 py-1 text-white text-sm sm:text-base font-medium drop-shadow-lg leading-tight">
+                      <span className="inline-block bg-black/80 rounded px-3 py-1 text-white text-xs font-medium drop-shadow-lg leading-tight">
                         {item.photographer}
                       </span>
                     </div>
                   </div>
-
                   {/* Enhanced light sweep effect */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none overflow-hidden">
                     <div className="absolute top-0 left-[-100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform skew-x-[-25deg] group-hover:animate-[shine_0.8s_ease-out] pointer-events-none" />
@@ -295,41 +314,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Loading indicator with progress */}
-        {!imagesLoaded && (
-          <div className="flex flex-col items-center mt-8 space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-              <span className="text-gray-400">Loading gallery...</span>
-            </div>
-            <div className="w-64 bg-gray-700 rounded-full h-2">
-              <div
-                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                style={{
-                  width: `${(Object.keys(loadedImages).length / galleryItems.length) * 100}%`,
-                }}
-              />
-            </div>
-            <p className="text-sm text-gray-500">
-              {Object.keys(loadedImages).length} of {galleryItems.length} images loaded
-            </p>
-          </div>
-        )}
-
-        {/* Gallery stats - development only */}
-        {process.env.NODE_ENV === "development" && imagesLoaded && (
-          <div className="mt-8 p-4 bg-gray-800/50 rounded-lg text-sm text-gray-400 space-y-2">
-            <p>
-              Screen: {screenSize} | Images: {galleryItems.length} | Loaded: {Object.keys(loadedImages).length}
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 text-xs">
-              {Object.entries(loadedImages).map(([id, data]) => (
-                <div key={id} className="bg-gray-700/50 p-2 rounded">
-                  ID {id}: {data.width}×{data.height} ({Math.round(data.aspectRatio * 100) / 100}:1)
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* No longer blocking grid rendering; indicator can be added elsewhere if desired */}
       </div>
       <Footer />
 
