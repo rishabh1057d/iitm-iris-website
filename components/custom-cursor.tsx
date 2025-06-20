@@ -88,10 +88,8 @@ export function CustomCursor() {
     default: {
       height: 32,
       width: 32,
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
-      border: "1px solid rgba(255, 255, 255, 0.3)",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         mass: 0.3,
         stiffness: 800,
         damping: 25,
@@ -100,11 +98,8 @@ export function CustomCursor() {
     button: {
       height: 50,
       width: 50,
-      backgroundColor: "rgba(0, 112, 243, 0.2)",
-      border: "1px solid rgba(0, 112, 243, 0.5)",
-      mixBlendMode: "difference",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         mass: 0.6,
         stiffness: 500,
         damping: 28,
@@ -113,10 +108,8 @@ export function CustomCursor() {
     text: {
       height: 40,
       width: 40,
-      backgroundColor: "rgba(255, 255, 255, 0.15)",
-      border: "1px solid rgba(255, 255, 255, 0.4)",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         mass: 0.4,
         stiffness: 600,
         damping: 25,
@@ -125,15 +118,39 @@ export function CustomCursor() {
     image: {
       height: 60,
       width: 60,
-      backgroundColor: "rgba(255, 255, 255, 0.05)",
-      border: "1px solid rgba(255, 255, 255, 0.2)",
-      mixBlendMode: "difference",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         mass: 0.7,
         stiffness: 400,
         damping: 28,
       },
+    },
+  }
+
+  // Define a style map for non-animatable properties
+  const styleMap: Record<CursorVariant, React.CSSProperties> = {
+    default: {
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      border: "1px solid rgba(255, 255, 255, 0.3)",
+    },
+    button: {
+      backgroundColor: "rgba(0, 112, 243, 0.2)",
+      border: "1px solid rgba(0, 112, 243, 0.5)",
+      mixBlendMode: "difference",
+    },
+    text: {
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
+      border: "1px solid rgba(255, 255, 255, 0.4)",
+    },
+    image: {
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      border: "1px solid rgba(255, 255, 255, 0.2)",
+      mixBlendMode: "difference",
+    },
+    link: {
+      backgroundColor: "rgba(0, 112, 243, 0.1)",
+      border: "1px solid rgba(0, 112, 243, 0.3)",
+      mixBlendMode: "difference",
     },
   }
 
@@ -148,6 +165,7 @@ export function CustomCursor() {
           y: mouseY,
           translateX: "-50%",
           translateY: "-50%",
+          ...styleMap[cursorVariant],
         }}
         variants={variants}
         animate={cursorVariant}
