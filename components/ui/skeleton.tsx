@@ -1,4 +1,4 @@
-import { cn } from "@/iitm-iris-website/lib/utils"
+import { cn } from "../../lib/utils"
 
 function Skeleton({
   className,
