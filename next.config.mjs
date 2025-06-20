@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   images: {
     domains: ['placeholder.svg', 'blob.v0.dev'],
     dangerouslyAllowSVG: true,
@@ -14,7 +11,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-  swcMinify: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
