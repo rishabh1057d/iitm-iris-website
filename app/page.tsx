@@ -111,7 +111,6 @@ export default function Home() {
       opacity: 1,
       transition: {
         duration: 1.2,
-        ease: "easeOut",
       },
     },
     hover: isReducedMotion
@@ -125,7 +124,6 @@ export default function Home() {
           ],
           transition: {
             duration: 0.8,
-            ease: "easeInOut",
             filter: {
               repeat: Number.POSITIVE_INFINITY,
               duration: 2,
@@ -142,7 +140,6 @@ export default function Home() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   }
@@ -156,7 +153,6 @@ export default function Home() {
       transition: {
         duration: 0.6,
         delay: 0.3,
-        ease: "easeOut",
       },
     },
     hover: isReducedMotion
@@ -177,7 +173,6 @@ export default function Home() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
       },
     },
   }
@@ -225,9 +220,8 @@ export default function Home() {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              style={{ y: titleY }}
+              style={{ y: titleY, fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
               className="text-responsive font-bold mb-4 text-white drop-shadow-lg will-change-transform"
-              style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
             >
               IRIS Society
             </motion.h1>
@@ -236,10 +230,9 @@ export default function Home() {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              style={{ y: subtitleY }}
+              style={{ y: subtitleY, fontSize: "clamp(1rem, 3vw, 1.25rem)" }}
               transition={{ delay: 0.2 }}
               className="text-responsive text-gray-300 mb-2 max-w-lg mx-auto will-change-transform"
-              style={{ fontSize: "clamp(1rem, 3vw, 1.25rem)" }}
             >
               Photography & Videography Society of IITM BS Degree
             </motion.p>
@@ -248,10 +241,9 @@ export default function Home() {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              style={{ y: subtitleY }}
+              style={{ y: subtitleY, fontSize: "clamp(0.875rem, 2.5vw, 1.125rem)" }}
               transition={{ delay: 0.3 }}
               className="text-responsive text-gray-400 mb-10 max-w-lg mx-auto will-change-transform italic"
-              style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.125rem)" }}
             >
               Through Our Lenses, Beyond the Ordinary
             </motion.p>
