@@ -3,6 +3,18 @@
 import { useEffect, useState } from "react"
 import ParallaxBackground from "./parallax-background"
 
+// TypeScript may not have BatteryManager in lib.dom.d.ts for all targets
+type BatteryManager = {
+  charging: boolean;
+  chargingTime: number;
+  dischargingTime: number;
+  level: number;
+  onchargingchange: ((this: BatteryManager, ev: Event) => any) | null;
+  onchargingtimechange: ((this: BatteryManager, ev: Event) => any) | null;
+  ondischargingtimechange: ((this: BatteryManager, ev: Event) => any) | null;
+  onlevelchange: ((this: BatteryManager, ev: Event) => any) | null;
+};
+
 export default function LazyBackgroundLoader() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
@@ -16,7 +28,7 @@ export default function LazyBackgroundLoader() {
         // @ts-ignore - getBattery is not in the TypeScript navigator type
         navigator
           .getBattery()
-          .then((battery) => {
+          .then((battery: BatteryManager) => {
             if (battery.level < 0.2 && !battery.charging) {
               // Low battery and not charging, don't load heavy background
               return false
