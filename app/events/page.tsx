@@ -390,6 +390,46 @@ export default function Events() {
                     <span>IRIS x Sundarbans House</span>
                   </div>
                 </div>
+                
+                <div className="flex justify-center">
+                  <span className="text-xs px-3 py-1 bg-gray-600/20 text-gray-400 rounded-md border border-gray-500/20">
+                    Registration Closed
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="event-card glass-card-event flex-shrink-0 w-80 backdrop-blur-md bg-white/5 border border-blue-400/20"
+              variants={cardVariants}
+              whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+            >
+              <div className="aspect-[3/4] bg-gray-700 relative">
+                <Image
+                  src="/images/ssve.png"
+                  alt="Shutter Safari - Virtual Edition"
+                  width={300}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold mb-2 text-white">Shutter Safari Virtual Edition - Margazhi</h3>
+                <p className="text-blue-200 mb-3 text-sm">Uniqe themed multi-round Online photo contest</p>
+                <div className="space-y-1 text-xs text-blue-300 mb-3">
+                  <div className="flex items-center">
+                    <Calendar className="w-3 h-3 mr-2" />
+                    <span>4–7 Jan 2025</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-3 h-3 mr-2" />
+                    <span>Online</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Users className="w-3 h-3 mr-2" />
+                    <span>IRIS x Kanha House</span>
+                  </div>
+                </div>
                 <div className="flex justify-center">
                   <span className="text-xs px-3 py-1 bg-gray-600/20 text-gray-400 rounded-md border border-gray-500/20">
                     Registration Closed

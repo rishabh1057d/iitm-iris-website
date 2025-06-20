@@ -20,6 +20,7 @@ type TeamMember = {
 
 export default function Team() {
   const [showPreviousMembers, setShowPreviousMembers] = useState(false)
+  const [showMoreCore, setShowMoreCore] = useState(false)
 
   const titleRef = useRef<HTMLHeadingElement>(null)
   const leadershipRef = useRef<HTMLDivElement>(null)
@@ -38,9 +39,11 @@ export default function Team() {
     {
       id: 1,
       name: "Anshi Jain",
+      //name: "Rishabh Singh",
       role: "Secretary",
       description: "Leads the society with a vision for creative excellence.",
       image: "/images/secretary.jpg",
+      //image: "/images/rishabh.jpg",
       linkedin: "https://www.linkedin.com/in/anshi-jain-5853361a8/",
     },
     {
@@ -92,7 +95,7 @@ export default function Team() {
       name: "Varchaswa Shukla",
       role: "PR Team",
       description: "Manages public relations and society's image.",
-      image: "/placeholder.svg?height=300&width=250",
+      image: "/images/varchaswa.JPG",
       linkedin: "https://www.linkedin.com/in/varchaswa-shukla-0a6418348/",
     },
     {
@@ -120,6 +123,33 @@ export default function Team() {
       description: "Designs and creates visual content.",
       image: "/images/nitesh.jpeg",
       linkedin: "https://www.linkedin.com/in/niteshchandraghosh/",
+      className: "mx-auto",
+    },
+    {
+      id: 9,
+      name: "Sarthak Gupta",
+      role: "PR Team",
+      description: "Manages advertising and promotions.",
+      image: "/images/sarthak.jpg",
+      linkedin: "https://www.linkedin.com/in/sarthak-gupta-4b5b1921b/",
+      className: "mx-auto",
+    },
+    {
+      id: 10,
+      name: "Thondapi Rohit",
+      role: "Outreach Team",
+      description: "Works on expanding the society",
+      image: "/images/rohit.jpg",
+      linkedin: "",
+      className: "mx-auto",
+    },
+    {
+      id: 11,
+      name: "Meenakshi",
+      role: "PR Team",
+      description: "Manages advertising and promotions.",
+      image: "/images/meenakshi.jpg",
+      linkedin: "",
       className: "mx-auto",
     },
   ]
@@ -179,7 +209,7 @@ export default function Team() {
       name: "Chahat Gupta",
       role: "Content Writer",
       description: "Created engaging content for the society.",
-      image: "/placeholder.svg?height=300&width=250",
+      image: "/images/chahat.jpg",
       linkedin: "https://www.linkedin.com/in/chahat-gupta-030801257/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
     {
@@ -195,8 +225,8 @@ export default function Team() {
       name: "Kshitiz Rana",
       role: "Event Management Head",
       description: "Managed all society events.",
-      image: "/images/kshitiz.14f41205d4734541158a.jpg",
-      linkedin: "https://www.linkedin.com/in/kshitiz-rana-0000000000/",
+      image: "/images/Kshitiz.jpg",
+      linkedin: "https://www.linkedin.com/in/kshitiz-rana/",
     },
     {
       id: 6,
@@ -352,13 +382,25 @@ export default function Team() {
           {coreTeam.slice(0, 5).map((member) => (
             <TeamMemberCard key={member.id} member={member} isCompact={false} />
           ))}
-          {/* Second row: 3 members, centered */}
-          <div className="hidden lg:block" />
-          {coreTeam.slice(5).map((member) => (
+          {/* View More: show additional members if toggled */}
+          {showMoreCore && coreTeam.slice(5).map((member) => (
             <TeamMemberCard key={member.id} member={member} isCompact={false} />
           ))}
-          <div className="hidden lg:block" />
         </motion.div>
+        {/* View More Button */}
+        {coreTeam.length > 5 && (
+          <div className="flex justify-center mb-8">
+            <motion.button
+              onClick={() => setShowMoreCore((prev) => !prev)}
+              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-md transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {showMoreCore ? "View Less" : "View More"}
+              {showMoreCore ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+            </motion.button>
+          </div>
+        )}
 
         {/* Web Dev Team - Compact Version */}
         <motion.h2
