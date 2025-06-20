@@ -4,38 +4,13 @@ import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { useAuth } from "@/contexts/auth-context"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
 import { Calendar, Camera, LogOut, Users } from "lucide-react"
 
 export default function Dashboard() {
-  const { user, isLoading, isAuthorized, signOut } = useAuth()
   const router = useRouter()
-
-  useEffect(() => {
-    // If authentication is complete and user is not authorized, redirect to unauthorized page
-    if (!isLoading) {
-      if (!user) {
-        router.push("/auth/signin")
-      } else if (isAuthorized === false) {
-        router.push("/auth/unauthorized")
-      }
-    }
-  }, [user, isLoading, isAuthorized, router])
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    )
-  }
-
-  if (!user || isAuthorized === false) {
-    return null // Will redirect in useEffect
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center relative">
@@ -49,33 +24,20 @@ export default function Dashboard() {
         >
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="w-24 h-24 rounded-full overflow-hidden">
-              {user.user_metadata.avatar_url ? (
-                <Image
-                  src={user.user_metadata.avatar_url || "/placeholder.svg"}
-                  alt="User Avatar"
-                  width={96}
-                  height={96}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-blue-600 flex items-center justify-center text-3xl font-bold">
-                  {user.user_metadata.name?.charAt(0) || user.email?.charAt(0)}
-                </div>
-              )}
+              <Image
+                src="/logo.png"
+                alt="IRIS Society Logo"
+                width={96}
+                height={96}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h1 className="text-2xl font-bold mb-1">
-                Welcome, {user.user_metadata.name || user.email?.split("@")[0]}!
+                Welcome to the IRIS Society Dashboard!
               </h1>
-              <p className="text-gray-300 mb-2">{user.email}</p>
+              <p className="text-gray-300 mb-2">Explore events, submissions, and connect with members.</p>
             </div>
-            <button
-              onClick={signOut}
-              className="ml-auto bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-2"
-            >
-              <LogOut className="h-4 w-4" />
-              Sign Out
-            </button>
           </div>
         </motion.div>
 
